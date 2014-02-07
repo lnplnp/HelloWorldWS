@@ -1,5 +1,8 @@
 HelloWorldWS
 ============
+v1.1.0
+
+- Gestion des restrictions décrites dans le WSDL depuis le code généré
 
 v1.0.0
 
