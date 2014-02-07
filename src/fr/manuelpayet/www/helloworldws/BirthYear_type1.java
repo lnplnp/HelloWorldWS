@@ -263,6 +263,8 @@ public class BirthYear_type1 implements org.apache.axis2.databinding.ADBBean {
         .matches("[0-9]{4}")) {
       this.localBirthYear_type0 = param;
     } else {
+      HelloWorldService1MessageReceiverInOut.code = 0;
+      HelloWorldService1MessageReceiverInOut.message = "BirthYear_type1 BirthYear format non conforme";
       throw new java.lang.RuntimeException();
     }
 
