@@ -259,7 +259,7 @@ public class BirthYear_type0 implements org.apache.axis2.databinding.ADBBean {
   public void setBirthYear_type0(java.lang.String param) {
 
     if (org.apache.axis2.databinding.utils.ConverterUtil.convertToString(param)
-        .matches("[0-9]*")) {
+        .matches("[0-9]{4}")) {
       this.localBirthYear_type0 = param;
     } else {
       throw new java.lang.RuntimeException();
