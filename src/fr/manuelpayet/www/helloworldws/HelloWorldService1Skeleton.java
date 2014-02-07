@@ -6,11 +6,17 @@
  */
 package fr.manuelpayet.www.helloworldws;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 /**
  * HelloWorldService1Skeleton java skeleton for the axisService
  */
 public class HelloWorldService1Skeleton implements
     HelloWorldService1SkeletonInterface {
+
+  private DireBonjourResponse response;
+  private DireBonjourFaultException direBonjourFaultException;
 
   /**
    * Auto generated method signature
@@ -24,9 +30,41 @@ public class HelloWorldService1Skeleton implements
   public fr.manuelpayet.www.helloworldws.DireBonjourResponse direBonjour(
       fr.manuelpayet.www.helloworldws.DireBonjourRequest direBonjourRequest0)
       throws DireBonjourFaultException {
-    // TODO : fill this with the necessary business logic
-    throw new java.lang.UnsupportedOperationException("Please implement "
-        + this.getClass().getName() + "#direBonjour");
+    response = new DireBonjourResponse();
+    String birthYear = direBonjourRequest0.getBirthYear().getBirthYear_type0();
+    if (birthYear.matches("[0-9]{4}")) {
+      Calendar gregorianCalendar = GregorianCalendar.getInstance();
+      int year = gregorianCalendar.get(GregorianCalendar.YEAR);
+      int birthYearInt = Integer.parseInt(birthYear);
+      if (year < birthYearInt) {
+        DireBonjourFault direBonjourFault = new DireBonjourFault();
+        direBonjourFault.setCode(1);
+        direBonjourFault
+            .setMessage("L'année de naissance est supérieur à l'année courante.");
+        direBonjourFault.setDetails("L'âge ne peut pas être négatif.");
+        direBonjourFaultException = new DireBonjourFaultException(
+            "Exception AgeNegatif");
+        direBonjourFaultException.setFaultMessage(direBonjourFault);
+        throw direBonjourFaultException;
+      }
+      response.setAge(year - birthYearInt);
+    } else {
+      /*
+       * Tant que la restriction "[0-9]{4}" sur le champ birthYear est dérite
+       * dans le WSDL, le code ci-dessous ne sera pas atteint
+       */
+      DireBonjourFault direBonjourFault = new DireBonjourFault();
+      direBonjourFault.setCode(1);
+      direBonjourFault.setMessage("L'année de naissance n'est pas conforme.");
+      direBonjourFault
+          .setDetails("Ce champ ne respecte pas le format demandé.");
+      direBonjourFaultException = new DireBonjourFaultException(
+          "Exception MauvaisFormat");
+      direBonjourFaultException.setFaultMessage(direBonjourFault);
+      throw direBonjourFaultException;
+    }
+    response.setSalutations("Salut " + direBonjourRequest0.getFirstName() + " "
+        + direBonjourRequest0.getLastName() + " !");
+    return response;
   }
-
 }
