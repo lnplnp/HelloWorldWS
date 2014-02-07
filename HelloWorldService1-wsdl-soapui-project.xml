@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="HelloWorldService1?wsdl" resourceRoot="" soapui-version="4.6.4" xmlns:con="http://eviware.com/soapui/config">
-  <con:settings/>
-  <con:properties/>
-  <con:wssContainer/>
-</con:soapui-project>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://www.manuelpayet.fr/helloworldws/">
+   <soapenv:Header>
+      <hel:context>
+         <!--You may enter the following 2 items in any order-->
+         <sessionId>?</sessionId>
+         <sessionDate>?</sessionDate>
+      </hel:context>
+   </soapenv:Header>
+   <soapenv:Body>
+      <hel:direBonjourRequest>
+         <!--You may enter the following 3 items in any order-->
+         <lastName>PAYET</lastName>
+         <firstName>Manuel</firstName>
+         <birthYear>00000</birthYear>
+      </hel:direBonjourRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

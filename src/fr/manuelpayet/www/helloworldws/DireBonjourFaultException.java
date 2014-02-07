@@ -1,4 +1,3 @@
-
 /**
  * DireBonjourFaultException.java
  *
@@ -8,36 +7,34 @@
 
 package fr.manuelpayet.www.helloworldws;
 
-public class DireBonjourFaultException extends java.lang.Exception{
+public class DireBonjourFaultException extends java.lang.Exception {
 
-    private static final long serialVersionUID = 1391769804474L;
-    
-    private fr.manuelpayet.www.helloworldws.DireBonjourFault faultMessage;
+  private static final long serialVersionUID = 1391774017176L;
 
-    
-        public DireBonjourFaultException() {
-            super("DireBonjourFaultException");
-        }
+  private fr.manuelpayet.www.helloworldws.DireBonjourFault faultMessage;
 
-        public DireBonjourFaultException(java.lang.String s) {
-           super(s);
-        }
+  public DireBonjourFaultException() {
+    super("DireBonjourFaultException");
+  }
 
-        public DireBonjourFaultException(java.lang.String s, java.lang.Throwable ex) {
-          super(s, ex);
-        }
+  public DireBonjourFaultException(java.lang.String s) {
+    super(s);
+  }
 
-        public DireBonjourFaultException(java.lang.Throwable cause) {
-            super(cause);
-        }
-    
+  public DireBonjourFaultException(java.lang.String s, java.lang.Throwable ex) {
+    super(s, ex);
+  }
 
-    public void setFaultMessage(fr.manuelpayet.www.helloworldws.DireBonjourFault msg){
-       faultMessage = msg;
-    }
-    
-    public fr.manuelpayet.www.helloworldws.DireBonjourFault getFaultMessage(){
-       return faultMessage;
-    }
+  public DireBonjourFaultException(java.lang.Throwable cause) {
+    super(cause);
+  }
+
+  public fr.manuelpayet.www.helloworldws.DireBonjourFault getFaultMessage() {
+    return faultMessage;
+  }
+
+  public void setFaultMessage(
+      fr.manuelpayet.www.helloworldws.DireBonjourFault msg) {
+    faultMessage = msg;
+  }
 }
-    
