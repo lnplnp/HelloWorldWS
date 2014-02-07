@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="helloworldws" targetNamespace="http://www.manuelpayet.fr/helloworldws/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.manuelpayet.fr/helloworldws/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.manuelpayet.fr/helloworldws/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+      <xsd:element name="direBonjourRequest">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="lastName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:length value="10"/>
+                  <xsd:pattern value="[0-9A-Za-z]*"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="firstName">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:length value="10"/>
+                  <xsd:pattern value="[0-9A-Za-z]*"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="birthYear">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:pattern value="[0-9]*"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="direBonjourResponse">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="salutations" type="xsd:string"/>
+            <xsd:element name="age" type="xsd:int"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="direBonjourFault">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="code" type="xsd:int"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="details" type="xsd:string"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="context">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="sessionId" type="xsd:string"/>
+            <xsd:element name="sessionDate" type="xsd:dateTime"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="direBonjourFault">
+    <wsdl:part name="direBonjourFault" element="tns:direBonjourFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="contextHeader">
+    <wsdl:part name="context" element="tns:context">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="direBonjourRequest">
+    <wsdl:part name="direBonjourRequest" element="tns:direBonjourRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="direBonjourResponse">
+    <wsdl:part name="direBonjourResponse" element="tns:direBonjourResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorldService1">
+    <wsdl:operation name="direBonjour">
+      <wsdl:input name="direBonjourRequest" message="tns:direBonjourRequest">
+    </wsdl:input>
+      <wsdl:output name="direBonjourResponse" message="tns:direBonjourResponse">
+    </wsdl:output>
+      <wsdl:fault name="direBonjourFault" message="tns:direBonjourFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorld1SOAP" type="tns:HelloWorldService1">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="direBonjour">
+      <soap:operation soapAction="http://www.manuelpayet.fr/wsdl/helloworld/direBonjour"/>
+      <wsdl:input>
+        <soap:header message="tns:contextHeader" part="context" use="literal">
+        </soap:header>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="direBonjourFault">
+        <soap:fault name="direBonjourFault"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldService1">
+    <wsdl:port name="HelloWorldSOAP" binding="tns:HelloWorld1SOAP">
+      <soap:address location="http://localhost:8080/HelloWorldWS/services/HelloWorldSOAP"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

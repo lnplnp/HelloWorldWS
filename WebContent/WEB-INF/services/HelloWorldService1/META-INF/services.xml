@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- This file was auto-generated from WSDL --><!-- by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST) --><serviceGroup>
+    <service name="HelloWorldService1">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="fr.manuelpayet.www.helloworldws.HelloWorldService1MessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">fr.manuelpayet.www.helloworldws.HelloWorldService1Skeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="direBonjour" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://www.manuelpayet.fr/helloworldws/">
+            <actionMapping>http://www.manuelpayet.fr/wsdl/helloworld/direBonjour</actionMapping>
+            <outputActionMapping>http://www.manuelpayet.fr/helloworldws/HelloWorldService1/direBonjourResponse</outputActionMapping>
+            <faultActionMapping faultName="direBonjourFault">http://www.manuelpayet.fr/helloworldws/HelloWorldService1/direBonjour/Fault/direBonjourFault</faultActionMapping>
+            <faultActionMapping faultName="DireBonjourFault">http://www.manuelpayet.fr/helloworldws/HelloWorldService1/direBonjour/Fault/direBonjourFault</faultActionMapping>
+            <faultActionMapping faultName="DireBonjourFault_Exception">http://www.manuelpayet.fr/helloworldws/HelloWorldService1/direBonjour/Fault/direBonjourFault</faultActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

@@ -1,0 +1,58 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from HelloWorldService1 WSDL service -->
+
+  <service name="HelloWorldSOAP" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://www.manuelpayet.fr/helloworldws/"/>
+      <parameter name="wsdlServiceElement" value="HelloWorldService1"/>
+      <parameter name="schemaUnqualified" value="http://www.manuelpayet.fr/helloworldws/"/>
+      <parameter name="wsdlServicePort" value="HelloWorldSOAP"/>
+      <parameter name="className" value="fr.manuelpayet.www.helloworldws.HelloWorld1SOAPSkeleton"/>
+      <parameter name="wsdlPortType" value="HelloWorldService1"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://www.manuelpayet.fr/helloworldws/"
+        qname="ns:>>direBonjourRequest>firstName"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.manuelpayet.fr/helloworldws/"
+        qname="ns:>>direBonjourRequest>birthYear"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.manuelpayet.fr/helloworldws/"
+        qname="ns:>>direBonjourRequest>lastName"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.manuelpayet.fr/helloworldws/"
+        qname="ns:>direBonjourRequest"
+        type="java:fr.manuelpayet.www.helloworldws.DireBonjourRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
