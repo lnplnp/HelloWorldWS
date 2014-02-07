@@ -7,6 +7,8 @@
 
 package axis2.apache.org;
 
+import fr.manuelpayet.www.helloworldws.HelloWorldService1MessageReceiverInOut;
+
 /**
  * LastName_type0 bean class
  */
@@ -262,6 +264,8 @@ public class LastName_type0 implements org.apache.axis2.databinding.ADBBean {
         .matches("[0-9A-Za-z]*")) {
       this.localLastName_type0 = param;
     } else {
+      HelloWorldService1MessageReceiverInOut.code = 0;
+      HelloWorldService1MessageReceiverInOut.message = "LastName_type0 LastName format non conforme";
       throw new java.lang.RuntimeException();
     }
 

@@ -6,12 +6,22 @@
  */
 package fr.manuelpayet.www.helloworldws;
 
+import org.apache.axis2.AxisFault;
+import org.apache.log4j.Logger;
+
 /**
  * HelloWorldService1MessageReceiverInOut message receiver
  */
 
 public class HelloWorldService1MessageReceiverInOut extends
     org.apache.axis2.receivers.AbstractInOutMessageReceiver {
+
+  private static Logger logger = Logger
+      .getLogger(HelloWorldService1MessageReceiverInOut.class);
+
+  public static int code = 0;
+  public static String message = "";
+  public static String details = "";
 
   private org.apache.axis2.AxisFault createAxisFault(java.lang.Exception e) {
     org.apache.axis2.AxisFault f;
@@ -86,7 +96,7 @@ public class HelloWorldService1MessageReceiverInOut extends
       org.apache.axis2.context.MessageContext msgContext,
       org.apache.axis2.context.MessageContext newMsgContext)
       throws org.apache.axis2.AxisFault {
-
+    logger.info("");
     try {
 
       // get the implementation class for the Web Service
@@ -111,14 +121,24 @@ public class HelloWorldService1MessageReceiverInOut extends
         if ("direBonjour".equals(methodName)) {
 
           fr.manuelpayet.www.helloworldws.DireBonjourResponse direBonjourResponse2 = null;
-          fr.manuelpayet.www.helloworldws.DireBonjourRequest wrappedParam = (fr.manuelpayet.www.helloworldws.DireBonjourRequest) fromOM(
-              msgContext.getEnvelope().getBody().getFirstElement(),
-              fr.manuelpayet.www.helloworldws.DireBonjourRequest.class,
-              getEnvelopeNamespaces(msgContext.getEnvelope()));
-
-          direBonjourResponse2 =
-
-          skel.direBonjour(wrappedParam);
+          try {
+            fr.manuelpayet.www.helloworldws.DireBonjourRequest wrappedParam = (fr.manuelpayet.www.helloworldws.DireBonjourRequest) fromOM(
+                msgContext.getEnvelope().getBody().getFirstElement(),
+                fr.manuelpayet.www.helloworldws.DireBonjourRequest.class,
+                getEnvelopeNamespaces(msgContext.getEnvelope()));
+            direBonjourResponse2 = skel.direBonjour(wrappedParam);
+          } catch (AxisFault e) {
+            logger.info(e.getCause() + ", " + e.getMessage());
+            DireBonjourResponse direBonjourResponse = new DireBonjourResponse();
+            direBonjourResponse.setAge(0);
+            direBonjourResponse.setSalutations("[AxisFault] " + message);
+            direBonjourResponse2 = direBonjourResponse;
+          } catch (RuntimeException e) {
+            DireBonjourResponse direBonjourResponse = new DireBonjourResponse();
+            direBonjourResponse.setAge(0);
+            direBonjourResponse.setSalutations("[RuntimeException] " + message);
+            direBonjourResponse2 = direBonjourResponse;
+          }
 
           envelope = toEnvelope(getSOAPFactory(msgContext),
               direBonjourResponse2, false, new javax.xml.namespace.QName(
