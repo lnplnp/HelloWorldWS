@@ -92,7 +92,7 @@ public class HelloWorldService1MessageReceiverInOut extends
       // get the implementation class for the Web Service
       Object obj = getTheImplementationObject(msgContext);
 
-      HelloWorldService1SkeletonInterface skel = (HelloWorldService1SkeletonInterface) obj;
+      HelloWorldService1Skeleton skel = (HelloWorldService1Skeleton) obj;
       // Out Envelop
       org.apache.axiom.soap.SOAPEnvelope envelope = null;
       // Find the axisOperation that has been set by the Dispatch phase.
@@ -110,18 +110,18 @@ public class HelloWorldService1MessageReceiverInOut extends
 
         if ("direBonjour".equals(methodName)) {
 
-          fr.manuelpayet.www.helloworldws.DireBonjourResponse direBonjourResponse5 = null;
+          fr.manuelpayet.www.helloworldws.DireBonjourResponse direBonjourResponse2 = null;
           fr.manuelpayet.www.helloworldws.DireBonjourRequest wrappedParam = (fr.manuelpayet.www.helloworldws.DireBonjourRequest) fromOM(
               msgContext.getEnvelope().getBody().getFirstElement(),
               fr.manuelpayet.www.helloworldws.DireBonjourRequest.class,
               getEnvelopeNamespaces(msgContext.getEnvelope()));
 
-          direBonjourResponse5 =
+          direBonjourResponse2 =
 
           skel.direBonjour(wrappedParam);
 
           envelope = toEnvelope(getSOAPFactory(msgContext),
-              direBonjourResponse5, false, new javax.xml.namespace.QName(
+              direBonjourResponse2, false, new javax.xml.namespace.QName(
                   "http://www.manuelpayet.fr/helloworldws/", "direBonjour"));
 
         } else {

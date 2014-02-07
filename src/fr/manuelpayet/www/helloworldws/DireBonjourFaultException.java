@@ -9,7 +9,7 @@ package fr.manuelpayet.www.helloworldws;
 
 public class DireBonjourFaultException extends java.lang.Exception {
 
-  private static final long serialVersionUID = 1391769804474L;
+  private static final long serialVersionUID = 1391774017176L;
 
   private fr.manuelpayet.www.helloworldws.DireBonjourFault faultMessage;
 

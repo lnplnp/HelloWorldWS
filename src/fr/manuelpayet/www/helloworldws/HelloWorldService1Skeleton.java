@@ -12,8 +12,7 @@ import java.util.GregorianCalendar;
 /**
  * HelloWorldService1Skeleton java skeleton for the axisService
  */
-public class HelloWorldService1Skeleton implements
-    HelloWorldService1SkeletonInterface {
+public class HelloWorldService1Skeleton {
 
   private DireBonjourResponse response;
   private DireBonjourFaultException direBonjourFaultException;
@@ -21,17 +20,16 @@ public class HelloWorldService1Skeleton implements
   /**
    * Auto generated method signature
    * 
-   * @param direBonjourRequest0
-   * @return direBonjourResponse2
+   * @param direBonjourRequest
+   * @return direBonjourResponse
    * @throws DireBonjourFaultException
    */
 
-  @Override
   public fr.manuelpayet.www.helloworldws.DireBonjourResponse direBonjour(
-      fr.manuelpayet.www.helloworldws.DireBonjourRequest direBonjourRequest0)
+      fr.manuelpayet.www.helloworldws.DireBonjourRequest direBonjourRequest)
       throws DireBonjourFaultException {
     response = new DireBonjourResponse();
-    String birthYear = direBonjourRequest0.getBirthYear().getBirthYear_type0();
+    String birthYear = direBonjourRequest.getBirthYear().getBirthYear_type0();
     if (birthYear.matches("[0-9]{4}")) {
       Calendar gregorianCalendar = GregorianCalendar.getInstance();
       int year = gregorianCalendar.get(GregorianCalendar.YEAR);
@@ -63,8 +61,9 @@ public class HelloWorldService1Skeleton implements
       direBonjourFaultException.setFaultMessage(direBonjourFault);
       throw direBonjourFaultException;
     }
-    response.setSalutations("Salut " + direBonjourRequest0.getFirstName() + " "
-        + direBonjourRequest0.getLastName() + " !");
+    response.setSalutations("Salut " + direBonjourRequest.getFirstName() + " "
+        + direBonjourRequest.getLastName() + " !");
     return response;
   }
+
 }
