@@ -265,8 +265,7 @@ public class BirthYear_type0 implements org.apache.axis2.databinding.ADBBean {
       this.localBirthYear_type0 = param;
     } else {
       HelloWorldService1MessageReceiverInOut.code = 0;
-      HelloWorldService1MessageReceiverInOut.message = "BirthYear_type0 BirthYear format non conforme";
-      throw new java.lang.RuntimeException();
+      throw new java.lang.RuntimeException("BirthYear_type0 BirthYear format non conforme");
     }
 
   }

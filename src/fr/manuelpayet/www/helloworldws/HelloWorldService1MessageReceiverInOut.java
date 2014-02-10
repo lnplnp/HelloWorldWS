@@ -20,7 +20,6 @@ public class HelloWorldService1MessageReceiverInOut extends
       .getLogger(HelloWorldService1MessageReceiverInOut.class);
 
   public static int code = 0;
-  public static String message = "";
   public static String details = "";
 
   private org.apache.axis2.AxisFault createAxisFault(java.lang.Exception e) {
@@ -131,12 +130,12 @@ public class HelloWorldService1MessageReceiverInOut extends
             logger.info(e.getCause() + ", " + e.getMessage());
             DireBonjourResponse direBonjourResponse = new DireBonjourResponse();
             direBonjourResponse.setAge(0);
-            direBonjourResponse.setSalutations("[AxisFault] " + message);
+            direBonjourResponse.setSalutations("[AxisFault] " + e.getMessage());
             direBonjourResponse2 = direBonjourResponse;
           } catch (RuntimeException e) {
             DireBonjourResponse direBonjourResponse = new DireBonjourResponse();
             direBonjourResponse.setAge(0);
-            direBonjourResponse.setSalutations("[RuntimeException] " + message);
+            direBonjourResponse.setSalutations("[RuntimeException] " + e.getMessage());
             direBonjourResponse2 = direBonjourResponse;
           }
 

@@ -1,5 +1,9 @@
 HelloWorldWS
 ============
+v1.1.1
+
+- Propagation plus sûre du message d'erreur
+
 v1.1.0
 
 - Gestion des restrictions décrites dans le WSDL depuis le code généré
