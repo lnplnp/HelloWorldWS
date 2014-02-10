@@ -264,8 +264,7 @@ public class FirstName_type1 implements org.apache.axis2.databinding.ADBBean {
       this.localFirstName_type0 = param;
     } else {
       HelloWorldService1MessageReceiverInOut.code = 0;
-      HelloWorldService1MessageReceiverInOut.message = "FirstName_type1 FirstName format non conforme";
-      throw new java.lang.RuntimeException();
+      throw new java.lang.RuntimeException("FirstName_type1 FirstName format non conforme");
     }
 
   }
